@@ -5,11 +5,12 @@ int main() {
 
   double distance = 0;
   cout << "请输入距离: ";
-  cin >> distance;
-  while (!cin.good()) {
-    cout << "请输入数字: ";
+  while (!(cin >> distance)) {
     cin.clear();
-    cin >> distance;
+    while (cin.get() != '\n') {
+      continue;
+    }
+    cout << "请输入数字: ";
   }
 
   double yard = distance * 220;
