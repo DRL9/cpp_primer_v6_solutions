@@ -7,3 +7,4 @@
     Finally, enter the seconds of arc: 19
     37 degrees, 51 minutes, 19 seconds = 37.8553 degrees
 ```
+

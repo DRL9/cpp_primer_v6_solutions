@@ -8,3 +8,4 @@ Please enter a Celsius value: 20
 下面是转换公式：
 
 华氏温度 = 1.8×摄氏温度 + 32.0
+
