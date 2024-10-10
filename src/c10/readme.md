@@ -2,6 +2,20 @@
 
 2．下面是一个非常简单的类定义：
 
+```cpp
+    class Person {
+        private:
+        static const LIMIT = 25;
+        string lname; // Person’s last name
+        char fname[LIMIT]; // Person’s first name
+        public:
+        Person() {lname = ""; fname[0] = ‘\0’; } // #1
+        Person(const string & ln, const char * fn = "Heyyou"); // #2
+        // the following methods display lname and fname
+        void Show() const; // firstname lastname format
+        void FormalShow() const; // lastname, firstname format
+    };
+```
 
 
 它使用了一个string对象和一个字符数组，让您能够比较它们的用法。请提供未定义的方法的代码，以完成这个类的实现。再编写一个使用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个参数和两个参数）以及两种显示方法。下面是一个使用这些构造函数和方法的例子：
@@ -14,12 +28,35 @@
 
 5．考虑下面的结构声明：
 
+```cpp
+   struct customer {
+        char fullname[35];
+        double payment;
+    };
+```
+
 
 
 编写一个程序，它从栈中添加和删除customer结构（栈用Stack类声明表示）。每次customer结构被删除时，其payment的值都被加入到总数中，并报告总数。注意：应该可以直接使用Stack类而不作修改；只需修改typedef声明，使Item的类型为customer，而不是unsigned long即可。
 
 6．下面是一个类声明：
 
+```cpp
+    class Move
+    {
+    private:
+        double x;
+        double y;
+    public:
+        Move(double a = 0, double b = 0); // sets x, y to a, b
+        showmove() const; // shows current x, y values
+        Move add(const Move & m) const;
+    // this function adds x of m to x of invoking object to get new x,
+    // adds y of m to y of invoking object to get new y, creates a new
+    // move object initialized to new x, y values and returns it
+        reset(double a = 0, double b = 0); // resets x, y to a, b
+    };
+```
 
 
 请提供成员函数的定义和测试这个类的程序。
@@ -70,6 +107,9 @@ plorg的默认名称为“Plorga”。
 
 该列表的规范很简单，这主要旨在简化这个编程练习。可以选择使用数组或链表来实现该列表，但公有接口不应依赖于所做的选择。也就是说，公有接口不应有数组索引、节点指针等。应使用通用概念来表达创建列表、在列表中添加数据项等操作。对于访问数据项以及执行操作，通常应使用将函数指针作为参数的函数来处理：
 
+```cpp
+ void visit(void (*pf)(Item &));
+```
 
 
 其中，pf指向一个将Item引用作为参数的函数（不是成员函数），Item是列表中数据项的类型。visit( )函数将该函数用于列表中的每个数据项。

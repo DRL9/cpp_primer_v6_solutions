@@ -1,6 +1,19 @@
 1．修改程序清单11.5，使之将一系列连续的随机漫步者位置写入到文件中。对于每个位置，用步号进行标示。另外，让该程序将初始条件（目标距离和步长）以及结果小结写入到该文件中。该文件的内容与下面类似：
 
-
+```
+    Target Distance: 100, Step Size: 20
+    0: (x,y) = (0, 0)
+    1: (x,y) = (-11.4715, 16.383)
+    2: (x,y) = (-8.68807, -3.42232)
+    ...
+    26: (x,y) = (42.2919, -78.2594)
+    27: (x,y) = (58.6749, -89.7309)
+    After 27 steps, the subject has the following location:
+    (x,y) = (58.6749, -89.7309)
+    or
+    (m,a) = (107.212, -56.8194)
+    Average outward distance per step = 3.97081
+```
 
 2．对Vector类的头文件（程序清单11.13）和实现文件（程序清单11.14）进行修改，使其不再存储矢量的长度和角度，而是在magval( )和angval( )被调用时计算它们。
 
@@ -30,6 +43,30 @@
 
 请定义一个复数类，以便下面的程序可以使用它来获得正确的结果。
 
+```cpp
+    #include <iostream>
+    using namespace std;
+    #include "complex0.h" // to avoid confusion with complex.h
+    int main()
+    {
+        complex a(3.0, 4.0); // initialize to (3,4i)
+        complex c;
+        cout << "Enter a complex number (q to quit):\n";
+        while (cin >> c)
+        {
+            cout << "c is " << c << "\n";
+            cout << "complex conjugate is " << ~c << "\n";
+            cout << "a is " << a << "\n";
+            cout << "a + c is " << a + c << "\n';
+            cout << "a - c is " << a - c << "\n";
+            cout << "a * c is " << a * c << "\n";
+            cout << "2 * c is " << 2 * c << "\n";
+            cout << "Enter a complex number (q to quit):\n";
+        }
+        cout << "Done!\n";
+        return 0;
+    }
+```
 
 
 
@@ -38,7 +75,21 @@
 
 下面是该程序的运行情况。
 
-
+```
+    Enter a complex number (q to quit):
+    real: 10
+    imaginary: 12
+    c is (10,12i)
+    complex conjugate is (10,-12i)
+    a is (3,4i)
+    a + c is (13,16i)
+    a - c is (-7,-8i)
+    a * c is (-18,76i)
+    2 * c is (20,24i)
+    Enter a complex number (q to quit):
+    real: q
+    Done!
+```
 
 请注意，经过重载后，cin >>c将提示用户输入实数和虚数部分。
 

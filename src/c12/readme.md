@@ -1,5 +1,19 @@
 1．对于下面的类声明：
 
+```cpp
+    class Cow {
+        char name[20];
+        char * hobby;
+        double weight;
+    public:
+        Cow();
+        Cow(const char * nm, const char * ho, double wt);
+        Cow(const Cow c&);
+        ~Cow();
+        Cow & operator=(const Cow & c);
+        void ShowCow() const; // display all cow data
+    };
+```
 
 
 
@@ -18,18 +32,97 @@ d．提供一个这样的成员函数，它接受一个char参数，返回该字
 
 使用下面的程序来测试您的工作：
 
+```cpp
+    // pe12_2.cpp
+    #include <iostream>
+    using namespace std;
+    #include "string2.h"
+    int main()
+    {
+        String s1(" and I am a C++ student.");
+        String s2 = "Please enter your name: ";
+        String s3;
+        cout << s2; // overloaded << operator
+        cin >> s3; // overloaded >> operator
+        s2 = "My name is " + s3; // overloaded =, + operators
+        cout << s2 << ".\n";
+        s2 = s2 + s1;
+        s2.stringup(); // converts string to uppercase
+        cout << "The string\n" << s2 << "\ncontains " << s2.has('A')
+        << " 'A' characters in it.\n";
+        s1 = "red"; // String(const char *),
+        // then String & operator=(const String&)
+        String rgb[3] = { String(s1), String("green"), String("blue") };
+        cout << "Enter the name of a primary color for mixing light: ";
+        String ans;
+        bool success = false;
+        while (cin >> ans)
+        {
+            ans.stringlow(); // converts string to lowercase
+            for (int i = 0; i < 3; i++)
+            {
+                if (ans == rgb[i]) // overloaded == operator
+                {
+                    cout << "That's right!\n";
+                    success = true;
+                    break;
+                }
+            }
+            if (success)
+                break;
+            else
+                cout << "Try again!\n";
+        }
+        cout << "Bye\n";
+        return 0;
+    }
+```
 
 
 
 
 输出应与下面相似：
 
-
+```
+    Please enter your name: Fretta Farbo
+    My name is Fretta Farbo.
+    The string
+    MY NAME IS FRETTA FARBO AND I AM A C++ STUDENT.
+    contains 6 'A' characters in it.
+    Enter the name of a primary color for mixing light: yellow
+    Try again!
+    BLUE
+    That's right!
+    Bye
+```
 
 3．新编写程序清单10.7和程序清单10.8描述的Stock类，使之使用动态分配的内存，而不是string类对象来存储股票名称。另外，使用重载的operator < <()定义代替show()成员函数。再使用程序清单10.9测试新的定义程序。
 
 4．请看下面程序清单10.10定义的Stack类的变量：
 
+```cpp
+    // stack.h -- class declaration for the stack ADT
+    typedef unsigned long Item;
+    class Stack
+    {
+    private:
+        enum {MAX = 10}; // constant specific to class
+        Item * pitems; // holds stack items
+        int size; // number of elements in stack
+        int top; // index for top stack item
+    public:
+        Stack(int n = MAX); // creates stack with n elements
+        Stack(const Stack & st);
+        ~Stack();
+        bool isempty() const;
+        bool isfull() const;
+        // push() returns false if stack already is full, true otherwise
+        bool push(const Item & item); // add item to stack
+        // pop() returns false if stack already is empty, true otherwise
+        bool pop(Item & item); // pop top into item
+        Stack & operator=(const Stack & st);
+    };
+```
 
 
 

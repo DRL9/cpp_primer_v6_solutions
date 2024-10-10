@@ -1,9 +1,59 @@
 1．以下面的类声明为基础：
 
+```cpp
+    // base class
+    class Cd { // represents a CD disk
+    private:
+        char performers[50];
+        char label[20];
+        int selections; // number of selections
+        double playtime; // playing time in minutes
+    public:
+        Cd(char * s1, char * s2, int n, double x);
+        Cd(const Cd & d);
+        Cd();
+        ~Cd();
+        void Report() const; // reports all CD data
+        Cd & operator=(const Cd & d);
+    };
+```
 
 
 派生出一个Classic类，并添加一组char成员，用于存储指出CD中主要作品的字符串。修改上述声明，使基类的所有函数都是虚的。如果上述定义声明的某个方法并不需要，则请删除它。使用下面的程序测试您的产品：
 
+```cpp
+
+    #include <iostream>
+    using namespace std;
+    #include "classic.h" // which will contain #include cd.h
+    void Bravo(const Cd & disk);
+    int main()
+    {
+        Cd c1("Beatles", "Capitol", 14, 35.5);
+        Classic c2 = Classic("Piano Sonata in B flat, Fantasia in C",
+        "Alfred Brendel", "Philips", 2, 57.17);
+        Cd *pcd = &c1;
+        cout << "Using object directly:\n";
+        c1.Report(); // use Cd method
+        c2.Report(); // use Classic method
+        cout << "Using type cd * pointer to objects:\n";
+        pcd->Report(); // use Cd method for cd object
+        pcd = &c2;
+        pcd->Report(); // use Classic method for classic object
+        cout << "Calling a function with a Cd reference argument:\n";
+        Bravo(c1);
+        Bravo(c2);
+        cout << "Testing assignment: ";
+        Classic copy;
+        copy = c2;
+        copy.Report()
+        return 0;
+    }
+    void Bravo(const Cd & disk)
+    {
+        disk.Report();
+    }
+```
 
 
 
@@ -14,18 +64,62 @@
 
 4．Benevolent Order of Programmers用来维护瓶装葡萄酒箱。为描述它，BOP Portmaster设置了一个Port类，其声明如下：
 
+```cpp
+    #include <iostream>
+    using namespace std;
+    class Port
+    {
+    private:
+        char * brand;
+        char style[20]; // i.e., tawny, ruby, vintage
+        int bottles;
+    public:
+        Port(const char * br = "none", const char * st = "none", int b = 0);
+        Port(const Port & p); // copy constructor
+        virtual ~Port() { delete [] brand;  }
+        Port & operator=(const Port & p);
+        Port & operator+=(int b); // adds b to bottles
+        Port & operator-=(int b); // subtracts b from bottles, if available
+        int BottleCount() const { return bottles;  }
+        virtual void Show() const;
+        friend ostream & operator<<(ostream & os, const Port & p);
+    };
+```
 
 
 show( )方法按下面的格式显示信息：
 
-
+```
+    Brand: Gallo
+    Kind: tawny
+    Bottles: 20
+```
 
 operator<<( )函数按下面的格式显示信息（末尾没有换行符）：
 
-
+```
+  Gallo, tawny, 20
+```
 
 PortMaster完成了Port类的方法定义后派生了VintagePort类，然后被解职——因为不小心将一瓶45度Cockburn泼到了正在准备烤肉调料的人身上，VintagePort类如下所示：
 
+```cpp
+
+    class VintagePort : public Port // style necessarily = "vintage"
+    {
+    private:
+        char * nickname; // i.e., "The Noble" or "Old Velvet", etc.
+        int year; // vintage year
+    public:
+        VintagePort();
+        VintagePort(const char * br, int b, const char * nn, int y);
+        VintagePort(const VintagePort & vp);
+        ~VintagePort() { delete [] nickname;  }
+        VintagePort & operator=(const VintagePort & vp);
+        void Show() const;
+        friend ostream & operator<<(ostream & os, const VintagePort & vp);
+    };
+```
 
 
 

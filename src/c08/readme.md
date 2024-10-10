@@ -4,11 +4,46 @@
 
 3．编写一个函数，它接受一个指向string对象的引用作为参数，并将该string对象的内容转换为大写，为此可使用表6.4描述的函数toupper( )。然后编写一个程序，它通过使用一个循环让您能够用不同的输入来测试这个函数，该程序的运行情况如下：
 
-
+```
+    Enter a string (q to quit): go away
+    GO AWAY
+    Next string (q to quit): good grief!
+    GOOD GRIEF!
+    Next string (q to quit): q
+    Bye.
+```
 
 
 4．下面是一个程序框架：
 
+```cpp
+    #include <iostream>
+    using namespace std;
+    #include <cstring>    // for strlen(), strcpy()
+    struct stringy {
+        char * str;       // points to a string
+        int ct;           // length of string (not counting '\0')
+    };
+    // prototypes for set(), show(), and show() go here
+    int main()
+    {
+        stringy beany;
+        char testing[] = "Reality isn't what it used to be.";
+        set(beany, testing); // first argument is a reference,
+                             // allocates space to hold copy of testing,
+                             // sets str member of beany to point to the
+                             // new block, copies testing to new block,
+                             // and sets ct member of beany
+        show(beany);      // prints member string once
+        show(beany, 2);   // prints member string twice
+        testing[0] = 'D';
+        testing[1] = 'u';
+        show(testing);    // prints testing string once
+        show(testing, 3); // prints testing string thrice
+        show("Done!");
+        return 0;
+    }
+```
 
 
 
