@@ -44,5 +44,7 @@ int main() {
   if (!has_data) {
     cout << "none\n";
   }
+  delete[] members;
+
   return 0;
 }
