@@ -1,8 +1,13 @@
 #include <iostream>
+using namespace std;
+
+int fill_array(double arr[], int limit) {
+  int i;
+  for (i = 0; i < limit; i++) {
+  }
+  return i;
+}
 
 int main() {
-  using namespace std;
-  cout << "name: DRL9" << endl;
-  cout << "address: China" << endl;
   return 0;
 }
