@@ -19,6 +19,16 @@
 
 它使用了一个string对象和一个字符数组，让您能够比较它们的用法。请提供未定义的方法的代码，以完成这个类的实现。再编写一个使用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个参数和两个参数）以及两种显示方法。下面是一个使用这些构造函数和方法的例子：
 
+```cpp
+    Person one; // use default constructor
+    Person two("Smythecraft"); // use #2 with one default argument
+    Person three("Dimwiddy", "Sam"); // use #2, no defaults
+    one.Show();
+    cout << endl;
+    one.FormalShow();
+```
+
+
 
 3．完成第9章的编程练习1，但要用正确的golf类声明替换那里的代码。用带合适参数的构造函数替换setgolf（golf &, const char *, int），以提供初始值。保留setgolf( )的交互版本，但要用构造函数来实现它（例如，setgolf( )的代码应该获得数据，将数据传递给构造函数来创建一个临时对象，并将其赋给调用对象，即*this）。
 
