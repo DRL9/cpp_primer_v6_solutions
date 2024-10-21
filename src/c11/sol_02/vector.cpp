@@ -50,7 +50,11 @@ Vector operator*(double a, const Vector& v) {
   return Vector(v.x * a, v.y * a, v.mode);
 }
 std::ostream& operator<<(std::ostream& os, const Vector& v) {
-  os << "(x, y) = (" << v.x << "," << v.y << ")";
+  if (v.mode == Vector::RECT) {
+    os << "(x, y) = (" << v.x << "," << v.y << ")";
+  } else {
+    os << "(mag, angle) = (" << v.magval() << "," << v.angval() << ")";
+  }
   return os;
 }
 }  // namespace VECTOR
